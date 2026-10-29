@@ -1,4 +1,4 @@
-import {cards,stages,finalQuiz} from './content.js';
+import {cards,stages,finalQuiz} from './content.js?v=tiangong-2';
 export const STORAGE_KEY='science-lab-ch4-time-alchemy-v1';
 export const fresh=()=>({version:1,cards:Object.fromEntries(cards.map(c=>[c.id,{prediction:null,evidence:[],answer:null,quizOpen:false,config:{},records:[]}])),assessments:{},notes:''});
 export function restore(raw){const s=fresh();if(!raw||raw.version!==1)return s;
@@ -14,5 +14,5 @@ export function restore(raw){const s=fresh();if(!raw||raw.version!==1)return s;
  s.notes=typeof raw.notes==='string'?raw.notes.slice(0,6000):'';return s;
 }
 export function mastered(card,s){const t=s.cards[card.id];return t.prediction!==null&&card.required.every(x=>t.evidence.includes(x))&&t.answer===card.quiz.answer;}
-export function certificateReady(s){return cards.every(c=>mastered(c,s))&&Object.entries(stages).every(([id,v])=>v.questions.every(q=>s.assessments['stage-'+id]?.[q.id]===q.answer))&&finalQuiz.every(q=>s.assessments.final?.[q.id]===q.answer);}
+export function certificateReady(s){return cards.every(c=>mastered(c,s))&&Object.entries(stages).every(([id,v])=>v.questions.every(q=>s.assessments['stage-'+id]?.[q.id]===q.answer));}
 export const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
