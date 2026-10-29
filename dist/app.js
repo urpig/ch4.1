@@ -1,8 +1,8 @@
-import {cards,stages,finalQuiz,glossary} from './content.js';
+import {cards,stages,finalQuiz,glossary} from './content.js?v=secret-book-1';
 import {STORAGE_KEY,fresh,restore,mastered,certificateReady,esc} from './state.js';
 import {scene} from './visuals.js';
 import {mountRateLab,mountEquilibriumLab} from './labs.js';
-import {mountActivity} from './activities.js';
+import {mountActivity} from './activities.js?v=secret-book-1';
 let state=fresh(),canStore=true,current=1;try{state=restore(JSON.parse(localStorage.getItem(STORAGE_KEY)||'null'));}catch{canStore=false;}
 const $=id=>document.getElementById(id),controllers=new Map();
 function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));canStore=true;}catch{canStore=false;}route();document.dispatchEvent(new Event('ch4-records'));updateCertificate();}
