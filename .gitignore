@@ -1,0 +1,6 @@
+work-browser/
+qa/
+node_modules/
+preview*.log
+release/
+chapter4-preview.html
